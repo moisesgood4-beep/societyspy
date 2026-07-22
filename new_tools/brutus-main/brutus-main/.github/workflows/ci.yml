@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    paths:
+      - '**/*.go'
+      - 'go.mod'
+      - 'go.sum'
+      - '.golangci*'
+      - 'Makefile'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    uses: praetorian-inc/public-workflows/.github/workflows/go-ci.yml@0c602372f3d0d038912dd08e159ecc83954a4995  # v2.9.3
+    permissions:
+      contents: read
+    with:
+      build-cmd-path: ./cmd/brutus
+      build-binary-name: brutus
+    secrets: inherit

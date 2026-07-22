@@ -1,0 +1,25 @@
+# HTTP Basic Auth Default Credentials
+# Format: username:password
+# Covers common web admin panels (Grafana, Jenkins, Elasticsearch, etc.)
+admin:admin
+admin:password
+admin:
+# --- cautious ---
+admin:changeme
+root:root
+root:password
+root:changeme
+elastic:elastic
+elastic:changeme
+user:user
+guest:guest
+# --- aggressive ---
+admin:admin123
+admin:Password1
+tomcat:tomcat
+admin:secret
+grafana:grafana
+jenkins:jenkins
+admin:default
+# GPON OLT vendors
+admin:Xpon@Olt9417#

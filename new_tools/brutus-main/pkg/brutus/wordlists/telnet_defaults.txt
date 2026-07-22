@@ -1,0 +1,24 @@
+# Telnet Default Credentials
+# Format: username:password
+admin:admin
+root:root
+admin:password
+# --- cautious ---
+administrator:administrator
+root:password
+admin:1234
+admin:
+ubnt:ubnt
+cisco:cisco
+# --- aggressive ---
+admin:12345
+telnetadmin:telnetadmin
+support:support
+admin:public
+root:vizxv
+user:user
+# GPON OLT vendors
+admin:Xpon@Olt9417#
+root:admin123
+zte:zte
+GEPON:GEPON

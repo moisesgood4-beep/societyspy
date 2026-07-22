@@ -1,0 +1,18 @@
+# SMB (Server Message Block) Default Credentials
+# Format: username:password (supports DOMAIN\username format)
+Administrator:
+Administrator:password
+Guest:
+# --- cautious ---
+Administrator:Administrator
+Administrator:Password1
+Administrator:admin
+admin:admin
+root:root
+# --- aggressive ---
+Administrator:Admin123
+Administrator:Welcome1
+smbuser:smbuser
+share:share
+Administrator:P@ssw0rd
+WORKGROUP\Administrator:password

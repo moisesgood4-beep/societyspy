@@ -1,0 +1,14 @@
+# PostgreSQL Default Credentials
+# Format: username:password
+postgres:postgres
+postgres:
+postgres:password
+# --- cautious ---
+postgres:admin
+admin:admin
+# --- aggressive ---
+postgres:postgres123
+postgres:root
+dbadmin:dbadmin
+pgsql:pgsql
+postgres:123456

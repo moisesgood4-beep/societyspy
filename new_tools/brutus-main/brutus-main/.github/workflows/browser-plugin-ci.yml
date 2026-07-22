@@ -1,0 +1,132 @@
+# CI workflow for browser plugin
+# Runs on PRs and merges to main
+#
+# Required secrets for full testing:
+#   ANTHROPIC_API_KEY - For Claude Vision tests
+
+name: Browser Plugin CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'internal/plugins/browser/**'
+      - 'internal/analyzers/claude/**'
+      - 'internal/analyzers/perplexity/**'
+      - '.github/workflows/browser-plugin-ci.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'internal/plugins/browser/**'
+      - 'internal/analyzers/claude/**'
+      - 'internal/analyzers/perplexity/**'
+      - '.github/workflows/browser-plugin-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  # Unit tests - no external dependencies
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Set up Go
+        uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6.4.0
+        with:
+          go-version: '1.26.0'
+          cache: true
+
+      - name: Run unit tests
+        run: |
+          CGO_ENABLED=0 go test -v -short ./internal/plugins/browser/...
+          CGO_ENABLED=0 go test -v -short ./internal/analyzers/claude/...
+          CGO_ENABLED=0 go test -v -short ./internal/analyzers/perplexity/...
+
+  # Integration tests with mock devices (needs Chrome)
+  integration-tests:
+    name: Integration Tests (Mock Devices)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Set up Go
+        uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6.4.0
+        with:
+          go-version: '1.26.0'
+          cache: true
+
+      - name: Verify Chrome installation
+        run: google-chrome --version
+
+      - name: Build and start mock services
+        run: |
+          cd internal/plugins/browser/testdata/mocks
+
+          # Build all mocks
+          for device in router camera printer nas generic; do
+            CGO_ENABLED=0 go build -o mock-$device ./$device/
+          done
+
+          # Start them on different ports, capturing logs for diagnostics
+          PORT=8081 ./mock-router  > /tmp/mock-router.log  2>&1 &
+          PORT=8082 ./mock-camera  > /tmp/mock-camera.log  2>&1 &
+          PORT=8083 ./mock-printer > /tmp/mock-printer.log 2>&1 &
+          PORT=8084 ./mock-nas     > /tmp/mock-nas.log     2>&1 &
+          PORT=8085 ./mock-generic > /tmp/mock-generic.log 2>&1 &
+
+          # Wait for services with active polling (up to 10s per service)
+          for port in 8081 8082 8083 8084 8085; do
+            for i in $(seq 1 10); do
+              if curl -sf http://localhost:$port/health > /dev/null 2>&1; then
+                echo "Port $port ready"
+                break
+              fi
+              if [ $i -eq 10 ]; then
+                echo "ERROR: Port $port failed to start"
+                cat /tmp/mock-*.log
+                exit 1
+              fi
+              sleep 1
+            done
+          done
+          echo "All mock services ready"
+
+      - name: Run integration tests
+        run: |
+          CGO_ENABLED=0 go test -v -tags=chromedp ./internal/plugins/browser/... -timeout 2m
+
+      - name: Run E2E tests
+        run: |
+          CGO_ENABLED=0 go test -v -tags=e2e ./internal/plugins/browser/... -timeout 5m
+
+      - name: Dump mock service logs
+        if: failure()
+        run: |
+          for f in /tmp/mock-*.log; do
+            echo "=== $f ==="
+            cat "$f" 2>/dev/null || echo "(no log)"
+          done
+
+  # Build verification
+  build:
+    name: Build Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Set up Go
+        uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6.4.0
+        with:
+          go-version: '1.26.0'
+          cache: true
+
+      - name: Build
+        run: CGO_ENABLED=0 go build -v ./...
+
+      - name: Build with all tags
+        run: |
+          CGO_ENABLED=0 go build -tags=integration -v ./...
+          CGO_ENABLED=0 go build -tags=e2e -v ./...

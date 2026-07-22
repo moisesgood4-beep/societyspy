@@ -1,0 +1,19 @@
+# MySQL Default Credentials
+# Format: username:password
+root:
+root:root
+root:password
+# --- cautious ---
+root:toor
+root:mysql
+root:admin
+mysql:mysql
+admin:admin
+# --- aggressive ---
+root:mysql123
+dbadmin:dbadmin
+mysql:password
+root:123456
+mysql:admin
+# GPON OLT vendors (Cloud EMS)
+root:vsol2019
