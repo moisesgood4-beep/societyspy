@@ -1,0 +1,18 @@
+name: CLAUDE.md Drift Detection
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
+
+concurrency:
+  group: claude-drift-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  drift-check:
+    uses: praetorian-inc/public-workflows/.github/workflows/claude-md-drift.yml@c5f6f98f1faf8f9ac6a870eced139b2509e08bfc  # v2.12.1
+    permissions:
+      contents: read
+      pull-requests: write
+    secrets:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

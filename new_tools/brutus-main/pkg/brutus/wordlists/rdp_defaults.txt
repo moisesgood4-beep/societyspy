@@ -1,0 +1,22 @@
+# RDP default credentials
+# Format: username:password
+# Common Windows/RDP default accounts
+administrator:password
+administrator:Password1
+admin:admin
+# --- cautious ---
+administrator:admin
+administrator:P@ssw0rd
+admin:password
+admin:Password1
+guest:guest
+user:user
+user:password
+test:test
+# --- aggressive ---
+administrator:Welcome1
+administrator:Passw0rd!
+administrator:Administrator
+sysadmin:sysadmin
+administrator:Admin123
+rdpuser:rdpuser

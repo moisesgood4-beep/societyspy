@@ -1,0 +1,19 @@
+# VNC Default Credentials
+# Format: password only (VNC doesn't use usernames, username field ignored)
+# Note: username field can be anything, only password is tested
+:
+:password
+:123456
+# --- cautious ---
+:admin
+:vnc
+:Password1
+:raspberry
+:12345678
+# --- aggressive ---
+:secret
+:changeme
+:1234
+:vncpass
+:qwerty
+:00000000

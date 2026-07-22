@@ -1,0 +1,127 @@
+name: ronin
+summary: A Ruby toolkit for security research and development.
+description:
+  Ronin is a free and Open Source Ruby toolkit for security research and
+  development. Ronin contains many different CLI commands and Ruby libraries for
+  a variety of security tasks, such as encoding/decoding data, filter
+  IPs/hosts/URLs, querying ASNs, querying DNS, HTTP, scanning for web
+  vulnerabilities, spidering websites, installing 3rd-party repositories of
+  exploits and/or payloads, running exploits, developing new exploits, managing
+  local databases, fuzzing data, performing recon, and much more.
+
+license: GPL-3.0-or-later
+authors: Postmodern
+email: postmodern.mod3@gmail.com
+homepage: https://ronin-rb.dev
+has_yard: true
+post_install_message: |
+  *************************************************************************
+
+    Thank you for installing Ronin!
+
+    To list the available commands:
+
+        $ ronin help
+
+    To view help information about a command:
+
+        $ ronin help COMMAND
+
+  *************************************************************************
+
+metadata:
+  documentation_uri: https://ronin-rb.dev/docs/ronin
+  source_code_uri:   https://github.com/ronin-rb/ronin
+  bug_tracker_uri:   https://github.com/ronin-rb/ronin/issues
+  changelog_uri:     https://github.com/ronin-rb/ronin/blob/main/ChangeLog.md
+  rubygems_mfa_required: 'true'
+
+generated_files:
+ - data/completions/ronin
+ - man/ronin.1
+ - man/ronin-asn.1
+ - man/ronin-banner-grab.1
+ - man/ronin-bitflip.1
+ - man/ronin-bitsquat.1
+ - man/ronin-cert-dump.1
+ - man/ronin-cert-gen.1
+ - man/ronin-cert-grab.1
+ - man/ronin-completion.1
+ - man/ronin-decode.1
+ - man/ronin-decrypt.1
+ - man/ronin-dns.1
+ - man/ronin-dns-proxy.1
+ - man/ronin-email-addr.1
+ - man/ronin-encrypt.1
+ - man/ronin-encode.1
+ - man/ronin-entropy.1
+ - man/ronin-escape.1
+ - man/ronin-extract.1
+ - man/ronin-grep.1
+ - man/ronin-help.1
+ - man/ronin-hexdump.1
+ - man/ronin-highlight.1
+ - man/ronin-hmac.1
+ - man/ronin-homoglyph.1
+ - man/ronin-host.1
+ - man/ronin-http.1
+ - man/ronin-ip.1
+ - man/ronin-iprange.1
+ - man/ronin-irb.1
+ - man/ronin-md5.1
+ - man/ronin-netcat.1
+ - man/ronin-new.1
+ - man/ronin-new-dns-proxy.1
+ - man/ronin-new-project.1
+ - man/ronin-new-script.1
+ - man/ronin-pack.1
+ - man/ronin-proxy.1
+ - man/ronin-public-suffix-list.1
+ - man/ronin-quote.1
+ - man/ronin-rot.1
+ - man/ronin-sha1.1
+ - man/ronin-sha256.1
+ - man/ronin-sha512.1
+ - man/ronin-strings.1
+ - man/ronin-tld-list.1
+ - man/ronin-tips.1
+ - man/ronin-typo.1
+ - man/ronin-typosquat.1
+ - man/ronin-unescape.1
+ - man/ronin-unhexdump.1
+ - man/ronin-unpack.1
+ - man/ronin-unquote.1
+ - man/ronin-url.1
+ - man/ronin-xor.1
+
+required_ruby_version: ">= 3.2.0"
+
+dependencies:
+  # Library dependencies:
+  open_namespace: ~> 0.4
+  rouge: ~> 3.0
+  io-endpoint: ~> 0.15
+  io-stream: ~> 0.8
+  wordlist: ~> 1.1
+  # Ronin dependencies:
+  ronin-support: ~> 1.1
+  ronin-dns-proxy: ~> 0.1
+  ronin-core: ~> 0.2
+  ronin-repos: ~> 0.2
+  ronin-wordlists: ~> 0.1
+  ronin-db: ~> 0.2
+  ronin-listener: ~> 0.1
+  ronin-nmap: ~> 0.1
+  ronin-masscan: ~> 0.1
+  ronin-recon: ~> 0.1
+  ronin-fuzzer: ~> 0.2
+  ronin-web: ~> 2.0
+  ronin-code-asm: ~> 1.0
+  ronin-code-sql: ~> 2.0
+  ronin-payloads: ~> 0.2
+  ronin-exploits: ~> 1.1
+  ronin-vulns: ~> 0.2
+  ronin-app: ~> 0.1
+
+development_dependencies:
+  bundler: ">= 2.0.0"

@@ -1,0 +1,15 @@
+# Cassandra Default Credentials
+# Format: username:password
+cassandra:cassandra
+admin:admin
+root:root
+# --- cautious ---
+admin:password
+cassandra:admin
+cassandra:password
+# --- aggressive ---
+cassandra:changeme
+admin:cassandra
+cassandra:123456
+dbadmin:dbadmin
+cassandra:root

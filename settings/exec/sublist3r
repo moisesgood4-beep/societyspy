@@ -1,0 +1,4 @@
+#!/bin/bash
+sublister="/data/data/com.termux/files/usr/opt/Sublist3r"
+cd ${sublister}
+exec python3 "${sublister}/sublist3r.py" "$@"
