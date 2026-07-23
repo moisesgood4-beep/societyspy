@@ -39,27 +39,22 @@ red="\e[1;31m"
 purple="\e[1;35m"
 yellow="\e[1;33m"
 white="\e[1;37m"
+
 # ==============================================
-#                  Dark colors
+#             Auto-Cleanup Function
 # ==============================================
-blackDark="\e[0;30m"
-blueDark="\e[0;34m"
-greenDark="\e[0;32m"
-cyanDark="\e[0;36m"
-redDark="\e[0;31m"
-purpleDark="\e[0;35m"
-yellowDark="\e[0;33m"
-whiteDark="\e[0;37m"
-# ==============================================
-#               Background colors
-# ==============================================
-blackBack=$(setterm -background black)
-blueBack=$(setterm -background blue)
-greenBack=$(setterm -background green)
-cyanBack=$(setterm -background cyan)
-redBack=$(setterm -background red)
-yellowBack=$(setterm -background yellow)
-whiteBack=$(setterm -background white)
+function auto_cleanup() {
+    echo -e ${red}"[${green}*${red}] ${green}Buscando instalaciones previas..."${white}
+    if [ -d "${spy}" ]; then
+        echo -e ${yellow}"[${red}!${yellow}] ${red}Se detectó una versión anterior de SocietySpy. Eliminando..."${white}
+        rm -rf "${spy}"
+        rm -f "${bin}/spy"
+        echo -e ${green}"[${white}√${green}] Limpieza completada."${white}
+    else
+        echo -e ${green}"[${white}√${green}] No se detectaron instalaciones previas. Procediendo..."${white}
+    fi
+}
+
 # ==============================================
 #             Installing dependencies
 # ==============================================
@@ -72,8 +67,8 @@ function install_all_tools_and_deps() {
     fi
 
     # Mover herramientas nativas a la carpeta de instalación
-    if [ -d "${spy}/new_tools" ]; then
-        cp -r ${spy}/new_tools/* "${intools}/"
+    if [ -d "new_tools" ]; then
+        cp -r new_tools/* "${intools}/"
         chmod -R 777 "${intools}"
     fi
 
@@ -137,19 +132,22 @@ function style() {
     chmod 777 *
     cd ${settings}/spyexec
     chmod 777 *
-    cd ${spy}
+    # Asegurarnos de que el directorio de destino exista antes de copiar
+    mkdir -p "${spy}"
+    cp -r * "${spy}/"
     cp ${settings}/spyexec/* ${bin}
     chmod 777 ${bin}/spy
     echo -e ${blue}"
 [${white}√${blue}] ${white}¡Instalación de SocietySpy Finalizada!\n"${white}
     echo -e ${yellow}"Usa el comando 'spy' seguido del nombre de la herramienta para ejecutarla."${white}
-    echo -e ${yellow}"Ejemplo: spy zphishing"${white}
+    echo -e ${yellow}"Ejemplo: spy zphishing-master"${white}
     chsh -s bash
 }
 
 # ==============================================
 #              Declaring functions
 # ==============================================
+auto_cleanup
 installing
 install_all_tools_and_deps
 style
