@@ -2,210 +2,88 @@
 
 <img src="images/SocietySpy.png" alt="SocietySpy Banner" width="100%">
 
-# 🪽 BIENVENIDO AL VACÍO DE LA CIBERSEGURIDAD 🪽
+# 🪽 SOCIETYSPY: VERSIÓN DEFINITIVA 🪽
 
 ---
 
 ### 🥀 GÓTICO // GRUNGE // UNDERGROUND 🥀
-*"Explorando las sombras del código y la tecnología..."*
+*"Todas las herramientas, un solo comando..."*
 
 </div>
 
-## 🌑 SOBRE SOCIETYSPY
+## 🌑 ¿QUÉ HAY DE NUEVO?
 
-**SocietySpy** es una suite de herramientas de ciberseguridad de código abierto, diseñada para auditar, penetrar y analizar entornos digitales. Inspirada en la estética oscura y la eficiencia, esta herramienta te permite explorar las profundidades de la seguridad informática directamente desde tu dispositivo Android a través de Termux, sin necesidad de acceso root.
-
-### 💀 MI STACK & VIBE
-
-*   **Estilo**: Grayscale / Gothic / Angel Wings
-*   **Enfoque**: Desarrollo de herramientas de ciberseguridad y estética digital.
-*   **Misión**: Proporcionar un entorno robusto y accesible para la exploración de vulnerabilidades.
+En esta versión, hemos simplificado todo al máximo. Ya no necesitas instalar las herramientas una por una. Al ejecutar el instalador, **SocietySpy** configura automáticamente todas las dependencias (Python, PHP, Node.js, Ruby) para que tus herramientas nativas funcionen al instante.
 
 ---
 
-## ✨ CARACTERÍSTICAS PRINCIPALES
+## ⚙️ INSTALACIÓN RÁPIDA
 
-*   **Amplia Colección de Herramientas:** Integra una vasta selección de utilidades para diversas tareas de ciberseguridad.
-*   **Fácil Instalación y Gestión:** Un script de instalación simplificado que maneja automáticamente las dependencias.
-*   **Entorno Termux Optimizado:** Diseñado específicamente para funcionar sin problemas en Termux (Android sin root).
-*   **Actualizaciones Constantes:** Mantente al día con las últimas herramientas y mejoras.
-*   **Comunidad Activa:** Soporte y desarrollo impulsado por la comunidad.
+Copia y pega este comando en tu Termux para instalar todo de una vez:
 
-## 🚀 REQUISITOS
+```bash
+git clone https://github.com/moisesgood4-beep/societyspy && cd societyspy && chmod +x *.sh && bash societyspy.sh
+```
 
-Para garantizar el funcionamiento óptimo de SocietySpy, asegúrate de cumplir con los siguientes requisitos:
+---
 
-*   **Aplicación Termux Actualizada:** Es crucial utilizar la versión más reciente de Termux desde F-Droid.
-*   **Android 9 o Superior:** Compatibilidad garantizada con versiones modernas de Android.
-*   **Al menos 100MB de Almacenamiento Disponible:** Para la instalación de herramientas y dependencias.
+## 🚀 CÓMO USAR LAS HERRAMIENTAS
 
-### ⚠️ Nota Importante sobre Termux
+Ahora puedes ejecutar cualquier herramienta directamente usando el comando `spy` seguido del nombre de la carpeta de la herramienta.
 
-No se recomienda utilizar la aplicación Termux disponible en la "Google Play Store", ya que los desarrolladores ya no le dan mantenimiento y está desactualizada. Termux sigue recibiendo actualizaciones en la plataforma "F-Droid". Descarga la aplicación desde el siguiente enlace oficial:
+### 💀 Comandos Directos:
 
-[**Descargar Termux desde F-Droid**](https://f-droid.org/en/packages/com.termux)
+| Herramienta | Comando para ejecutar |
+| :--- | :--- |
+| **Zphishing** | `spy zphishing-master` |
+| **Ufonet** | `spy ufonet-master` |
+| **ZeroTermux** | `spy ZeroTermux-main` |
+| **AdminHack** | `spy AdminHack-main` |
+| **GhostTrack** | `spy GhostTrack-main` |
+| **DDoS-Ripper** | `spy DDoS-Ripper-main` |
+| **Instabrute** | `spy instabrute.github.io-master` |
+| **SocialBox** | `spy SocialBox-Termux-master` |
+| **AllHackingTools** | `spy AllHackingTools-main` |
 
-## ⚙️ INSTALACIÓN
+> **Nota:** Si no recuerdas el nombre exacto de una herramienta, usa `spy list` para ver todas las opciones disponibles.
 
-Sigue estos sencillos pasos para instalar SocietySpy en tu entorno Termux:
+---
 
-1.  **Actualizar Repositorios de Termux:**
-    ```bash
-    yes|pkg update && yes|pkg upgrade
-    ```
-2.  **Otorgar Permisos de Almacenamiento:**
-    ```bash
-    termux-setup-storage
-    ```
-3.  **Instalar Git:**
-    ```bash
-    yes|pkg install git
-    ```
-4.  **Clonar el Repositorio de SocietySpy:**
-    ```bash
-    git clone https://github.com/Darkmux/societyspy.git
-    ```
-5.  **Acceder a la Carpeta del Proyecto:**
-    ```bash
-    cd societyspy
-    ```
-6.  **Otorgar Permisos de Ejecución:**
-    ```bash
-    chmod 777 *.sh
-    ```
-7.  **Ejecutar el Instalador:**
-    ```bash
-bash societyspy.sh
-    ```
+## 🛠️ LISTA COMPLETA DE HERRAMIENTAS NATIVAS
 
-## 💡 USO
+Estas son las herramientas que se instalan y configuran automáticamente con sus dependencias:
 
-El comando principal para interactuar con SocietySpy es `spy`. Aquí te mostramos cómo utilizarlo con sus argumentos:
+*   `404Frame-main`, `AdminHack-main`, `All-in-One-main`, `AllHackingTools-main`, `AnonGT-main`
+*   `Bl4ckZ3r0-main`, `Cracker-Tool-main`, `Cyber-Sploit-master`, `CyberPhish-master`
+*   `DDoS-Ripper-main`, `Deface-main`, `Destroyer-main`, `Doxxer-Toolkit-main`, `FB-HACK-main`
+*   `FSOCIETY-main`, `Faker-master`, `Free-Proxy-main`, `FuckYou-main`, `GhostTrack-main`
+*   `HXP-Ducky-Master`, `IP-Tracer-master`, `Kali-Linux-main`, `L0p4Map-main`, `PingRAT-main`
+*   `Python-Botnet-master`, `Python-RAT-main`, `Raven-Storm-master`, `SocialBox-Termux-master`
+*   `SocialPwned-master`, `TorMux-main`, `UniTools-Termux-main`, `WhatsAppHacking-main`
+*   `Wifi-crackerX-main`, `Xteam-main`, `ZeroTermux-main`, `Zip-Cracker--master`
+*   `brute-eagle-main`, `brutus-main`, `gobuster-master`, `hackingtool-master`, `infect-master`
+*   `instabrute.github.io-master`, `malicious-pdf-main`, `maskphish-master`, `mosint-master`
+*   `passlord-main`, `peniot-master`, `ronin-main`, `toxssin-main`, `ufonet-master`
+*   `vulscanpro-main`, `worm-main`, `zphishing-master`
 
-*   **Ayuda:** Muestra un menú de ayuda con información sobre el uso de SocietySpy.
-    ```bash
-    spy help
-    ```
-*   **Listar Herramientas/Banners:** Muestra una lista de las herramientas, banners o prompts disponibles.
-    ```bash
-    spy list <tools|banners|prompts>
-    ```
-*   **Actualizar SocietySpy:** Busca y actualiza SocietySpy a su última versión. (Se recomienda ejecutarlo regularmente).
-    ```bash
-    spy update
-    ```
-*   **Desinstalar SocietySpy:** Desinstala completamente SocietySpy y restaura la configuración predeterminada de Termux.
-    ```bash
-    spy uninstall
-    ```
-*   **Cambiar Estilo:** Cambia el tamaño del banner o prompt. (Ajusta según el tamaño de tu fuente en Termux).
-    ```bash
-    spy style <banner|prompt>
-    ```
-*   **Instalar Herramienta:** Instala una herramienta específica.
-    ```bash
-    spy install <nombre_herramienta>
-    ```
-*   **Eliminar Herramienta:** Elimina una herramienta específica.
-    ```bash
-    spy remove <nombre_herramienta>
-    ```
-*   **Reinstalar Herramienta:** Reinstala una herramienta específica.
-    ```bash
-    spy reinstall <nombre_herramienta>
-    ```
-
-## 🛠️ HERRAMIENTAS INCLUIDAS
-
-SocietySpy viene precargado con una impresionante colección de herramientas, y se han añadido las siguientes para expandir aún más sus capacidades:
-
-*   `404Frame-main`
-*   `AdminHack-main`
-*   `All-in-One-main`
-*   `AllHackingTools-main`
-*   `AnonGT-main`
-*   `Bl4ckZ3r0-main`
-*   `Cracker-Tool-main`
-*   `Cyber-Sploit-master`
-*   `CyberPhish-master`
-*   `DDoS-Ripper-main`
-*   `Deface-main`
-*   `Destroyer-main`
-*   `Doxxer-Toolkit-main`
-*   `FB-HACK-main`
-*   `FSOCIETY-main`
-*   `Faker-master`
-*   `Free-Proxy-main`
-*   `FuckYou-main`
-*   `GhostTrack-main`
-*   `HXP-Ducky-Master`
-*   `IP-Tracer-master`
-*   `Kali-Linux-main`
-*   `L0p4Map-main`
-*   `PingRAT-main`
-*   `Python-Botnet-master`
-*   `Python-RAT-main`
-*   `Raven-Storm-master`
-*   `SocialBox-Termux-master`
-*   `SocialPwned-master`
-*   `The_Extractor.py-main`
-*   `TorMux-main`
-*   `UniTools-Termux-main`
-*   `WhatsAppHacking-main`
-*   `Wifi-crackerX-main`
-*   `Xteam-main`
-*   `ZeroTermux-main`
-*   `Zip-Cracker--master`
-*   `advanced-bruteforce-password-generator-main`
-*   `brute-eagle-main`
-*   `brutus-main`
-*   `gobuster-master`
-*   `hackingtool-master`
-*   `infect-master`
-*   `instabrute.github.io-master`
-*   `malicious-pdf-main`
-*   `maskphish-master`
-*   `mosint-master`
-*   `passlord-main`
-*   `peniot-master`
-*   `ronin-main`
-*   `toxssin-main`
-*   `ufonet-master`
-*   `vulscanpro-main`
-*   `worm-main`
-*   `zphishing-master`
+---
 
 ## 🔗 CONECTA CON LA COMUNIDAD
 
 <div align="center">
 
-
+| 👾 DISCORD | 🎮 ROBLOX |
+| :---: | :---: |
+| <a href="https://discord.gg/t9tpzCZ2"><img src="https://img.shields.io/badge/Discord-Join%20Server-white?style=for-the-badge&logo=discord&logoColor=black" alt="Discord"></a> | <a href="https://www.roblox.com/users/ti0desami/profile"><img src="https://img.shields.io/badge/Roblox-ti0desami-gray?style=for-the-badge&logo=roblox&logoColor=white" alt="Roblox"></a> |
 
 </div>
 
 ---
 
-## 🤝 CONTRIBUCIÓN
+## 👤 CRÉDITOS
 
-¡Tu contribución es bienvenida! Si deseas mejorar SocietySpy, añadir nuevas herramientas o corregir errores, no dudes en:
-
-1.  Hacer un fork del repositorio.
-2.  Crear una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
-3.  Realizar tus cambios y hacer commit (`git commit -am 'Añadir nueva funcionalidad'`).
-4.  Subir tus cambios (`git push origin feature/nueva-funcionalidad`).
-5.  Abrir un Pull Request.
-
-## 📄 LICENCIA
-
-Este proyecto está bajo la Licencia Pública General (GPL). Consulta el archivo `LICENSE` para más detalles.
-
-## 👤 CONTACTO
-
-Desarrollado por: moisesgood4-bip y la comunidad SocietySpy
-
-
-
----
+**Desarrollado por:** moisesgood4-beep y la comunidad SocietySpy.
+*Reestructuración completa basada en herramientas nativas de ciberseguridad.*
 
 <div align="center">
   <img src="https://img.shields.io/badge/SOCIETYSPY-CYBERSECURITY-black?style=flat-square" alt="SocietySpy">

@@ -5,12 +5,7 @@
 # System: GNU/linux
 # Date: 22-04-2022
 #
-# Facebook: https://www.facebook.com/whitehacks00
-# TikTok: https://tiktok.com/@whitehacks00
-# Telegram: https://t.me/whitehacks00
-# GitHub: https://github.com/Darkmux
-#
-# This tool was created in honor of @thelinuxchoice.
+# Reestructurado por: moisesgood4-beep
 #
 # ==============================================
 #                   Variables
@@ -68,45 +63,59 @@ whiteBack=$(setterm -background white)
 # ==============================================
 #             Installing dependencies
 # ==============================================
-function install_new_tools() {
-    echo -e ${red}"\n[${green}*${red}] ${green}Installing new tools..."${white}
-    for tool_dir in /home/ubuntu/societyspy/societyspy/new_tools/*; do
-        tool_name=$(basename "$tool_dir")
-        echo -e "    ${yellow}Installing $tool_name..."${white}
-        cp -r "$tool_dir" "${intools}/$tool_name"
-        chmod -R 777 "${intools}/$tool_name"
-        # Attempt to find and install dependencies for Python tools
-        if [ -f "${intools}/$tool_name/requirements.txt" ]; then
-            echo -e "    ${cyan}Installing Python dependencies for $tool_name..."${white}
-            pip install -r "${intools}/$tool_name/requirements.txt" || echo -e "    ${red}Failed to install Python dependencies for $tool_name."${white}
-        fi
-        # Attempt to find and execute install.sh or setup.sh
-        if [ -f "${intools}/$tool_name/install.sh" ]; then
-            echo -e "    ${cyan}Executing install.sh for $tool_name..."${white}
-            chmod +x "${intools}/$tool_name/install.sh"
-            (cd "${intools}/$tool_name" && ./install.sh) || echo -e "    ${red}Failed to execute install.sh for $tool_name."${white}
-        elif [ -f "${intools}/$tool_name/setup.sh" ]; then
-            echo -e "    ${cyan}Executing setup.sh for $tool_name..."${white}
-            chmod +x "${intools}/$tool_name/setup.sh"
-            (cd "${intools}/$tool_name" && ./setup.sh) || echo -e "    ${red}Failed to execute setup.sh for $tool_name."${white}
+function install_all_tools_and_deps() {
+    echo -e ${red}"\n[${green}*${red}] ${green}Instalando TODAS las herramientas y dependencias nativas..."${white}
+    
+    # Crear carpeta de herramientas si no existe
+    if [ ! -d "${intools}" ]; then
+        mkdir -p "${intools}"
+    fi
+
+    # Mover herramientas nativas a la carpeta de instalación
+    if [ -d "${spy}/new_tools" ]; then
+        cp -r ${spy}/new_tools/* "${intools}/"
+        chmod -R 777 "${intools}"
+    fi
+
+    # Bucle para instalar dependencias de cada herramienta
+    for tool_dir in ${intools}/*; do
+        if [ -d "$tool_dir" ]; then
+            tool_name=$(basename "$tool_dir")
+            echo -e "    ${yellow}Configurando $tool_name..."${white}
+            
+            # Python dependencies
+            if [ -f "$tool_dir/requirements.txt" ]; then
+                echo -e "    ${cyan}Instalando dependencias de Python para $tool_name..."${white}
+                pip install -r "$tool_dir/requirements.txt" --quiet
+            fi
+            
+            # Node.js dependencies
+            if [ -f "$tool_dir/package.json" ]; then
+                echo -e "    ${cyan}Instalando dependencias de Node.js para $tool_name..."${white}
+                (cd "$tool_dir" && npm install --quiet)
+            fi
+
+            # Ejecutar scripts de instalación si existen
+            if [ -f "$tool_dir/install.sh" ]; then
+                chmod +x "$tool_dir/install.sh"
+                (cd "$tool_dir" && ./install.sh --quiet)
+            elif [ -f "$tool_dir/setup.sh" ]; then
+                chmod +x "$tool_dir/setup.sh"
+                (cd "$tool_dir" && ./setup.sh --quiet)
+            fi
         fi
     done
 }
 
 function installing() {
     echo -e ${red}"
-[${green}*${red}] ${green}Installing dependencies..."${white}
+[${green}*${red}] ${green}Instalando dependencias base del sistema..."${white}
     yes|pkg update && pkg upgrade
-    yes|pkg install git
-    yes|pkg install curl
-    yes|pkg install wget
-    yes|pkg install fish
-    yes|pkg install ruby
+    yes|pkg install git curl wget fish ruby php python nodejs-lts which openssl-tool termux-tools
     gem install lolcat
-    yes|pkg install openssl-tool
-    yes|pkg install termux-tools
-    yes|pkg install which
+    pip install --upgrade pip
 }
+
 # ==============================================
 #          Setting the Termux Style
 # ==============================================
@@ -132,16 +141,15 @@ function style() {
     cp ${settings}/spyexec/* ${bin}
     chmod 777 ${bin}/spy
     echo -e ${blue}"
-[${white}√${blue}] ${white}SocietySpy Installation Finished!\n"${white}
+[${white}√${blue}] ${white}¡Instalación de SocietySpy Finalizada!\n"${white}
+    echo -e ${yellow}"Usa el comando 'spy' seguido del nombre de la herramienta para ejecutarla."${white}
+    echo -e ${yellow}"Ejemplo: spy zphishing"${white}
     chsh -s bash
-    curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 }
+
 # ==============================================
 #              Declaring functions
 # ==============================================
 installing
-install_new_tools
+install_all_tools_and_deps
 style
-# ==============================================
-#    Created by: @Darkmux - WHITE HACKS ©2022
-# ==============================================
