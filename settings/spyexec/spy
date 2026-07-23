@@ -14,20 +14,22 @@ argument=$1
 red="\e[1;31m"
 green="\e[1;32m"
 yellow="\e[1;33m"
+cyan="\e[1;36m"
 white="\e[1;37m"
 
 if [[ -z "${argument}" ]]; then
     echo -e "${red}Uso: spy <nombre_de_la_herramienta>${white}"
     echo -e "${yellow}Ejemplo: spy zphishing-master${white}"
+    echo -e "${cyan}Escribe 'spy list' para ver todas las herramientas.${white}"
     exit 1
 fi
 
-# 1. Buscar en herramientas nativas (new_tools)
+# 1. Buscar en herramientas nativas (intools)
 if [ -d "${intools}/${argument}" ]; then
     echo -e "${green}Lanzando herramienta nativa: ${argument}...${white}"
     cd "${intools}/${argument}"
     
-    # Intentar ejecutar el archivo principal basado en extensiones comunes
+    # Lógica de ejecución inteligente
     if [ -f "zphishing.sh" ]; then bash zphishing.sh
     elif [ -f "ufonet" ]; then ./ufonet
     elif [ -f "install.sh" ]; then bash install.sh
@@ -37,20 +39,26 @@ if [ -d "${intools}/${argument}" ]; then
     elif [ -f "${argument}.sh" ]; then bash "${argument}.sh"
     elif [ -f "index.php" ]; then php index.php
     else
-        # Si no se encuentra un ejecutable obvio, listar archivos para el usuario
         echo -e "${yellow}No se encontró un ejecutable automático. Archivos disponibles:${white}"
         ls
     fi
     exit 0
 fi
 
-# 2. Manejar comandos internos originales (update, list, etc)
+# 2. Manejar comandos internos
 if [[ "${argument}" == "update" ]]; then
     cd ${spy}
     bash update.sh
 elif [[ "${argument}" == "list" ]]; then
-    echo -e "${green}Herramientas nativas disponibles:${white}"
-    ls -1 ${intools}
+    echo -e "${cyan}==============================================${white}"
+    echo -e "${green}       HERRAMIENTAS NATIVAS SOCIETYSPY        ${white}"
+    echo -e "${cyan}==============================================${white}"
+    
+    # Listar herramientas en columnas para mejor visibilidad
+    ls -1 ${intools} | column -c 80
+    
+    echo -e "${cyan}==============================================${white}"
+    echo -e "${yellow}Uso: spy <nombre_herramienta>${white}"
 else
     echo -e "${red}Herramienta '${argument}' no encontrada.${white}"
     echo -e "${yellow}Usa 'spy list' para ver las herramientas disponibles.${white}"
